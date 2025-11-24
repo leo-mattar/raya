@@ -1,0 +1,32 @@
+@keyframes marquee {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+[data-marquee-list][data-marquee-speed="slow"] {
+  animation: marquee 60s linear infinite;
+  animation-play-state: paused;
+}
+
+[data-marquee-list][data-marquee-speed="fast"] {
+  animation: marquee 40s linear infinite;
+  animation-play-state: paused;
+}
+
+[data-marquee-mask="true"] {
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+  mask: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+}
