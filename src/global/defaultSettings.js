@@ -25,7 +25,7 @@ export default function defaultSettings() {
 www.papertiger.com${"     "}
 
 `,
-    pprtgr
+    pprtgr,
   );
 
   // --- CURRENT YEAR
