@@ -11,6 +11,14 @@ export default function blogReadTime() {
     });
   }
 
+  // Single article page
+  const articleContent = document.querySelector("[data-article-content]");
+  const articleReadTime = document.querySelector("[data-article-read-time]");
+  if (articleContent && articleReadTime) {
+    const chars = articleContent.textContent.trim().length;
+    articleReadTime.textContent = `${Math.max(1, Math.round(chars / 1000))}`;
+  }
+
   const cards = document.querySelectorAll("[data-blog-card]");
   if (!cards.length) return;
 
