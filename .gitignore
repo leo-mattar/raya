@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 boilerplate/
+tag
 
 # Editor directories and files
 .vscode/*
