@@ -117,8 +117,8 @@ export default function flowState() {
         rotation: (Math.random() - 0.5) * 20,
       },
       {
-        x: "+=" + deltaX * 4,
-        y: "+=" + deltaY * 4,
+        x: "+=" + deltaX * 1.5,
+        y: "+=" + deltaY * 1.5,
         rotation: (Math.random() - 0.5) * 20,
         ease: "power4.out",
         duration: 1.5,
