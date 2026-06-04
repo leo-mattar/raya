@@ -97,7 +97,7 @@ body.raya-modal-open{overflow:hidden}
   const pos=[],loopH=[],colInnerA=[],colInnerB=[],speeds=[];
 
   // Fix 6: proper drag with momentum — separate tracking per column
-  const drag={on:false,col:-1,startY:0,startPos:0,vy:0,prevY:0,prevT:0,moved:false};
+  const drag={on:false,col:-1,startY:0,vy:0,prevY:0,prevT:0,moved:false};
 
   let pendingCard=null,hoverEntryX=0,hoverEntryY=0;
   const HOVER_PX=8;
@@ -194,7 +194,7 @@ body.raya-modal-open{overflow:hidden}
     function onStart(y){
       pointerDown=true;
       drag.on=true;drag.col=c;
-      drag.startY=y;drag.startPos=pos[c];
+      drag.startY=y;
       drag.prevY=y;drag.prevT=performance.now();
       drag.vy=0;drag.moved=false;
       colEl.classList.add('dragging');
@@ -204,9 +204,10 @@ body.raya-modal-open{overflow:hidden}
       if(Math.abs(y-drag.startY)>4)drag.moved=true;
       const now=performance.now(),dt=Math.max(now-drag.prevT,1);
       drag.vy=(y-drag.prevY)/dt;
+      const delta=drag.prevY-y;
       drag.prevY=y;drag.prevT=now;
       const lh=loopH[c]||1;
-      pos[c]=((drag.startPos-(y-drag.startY))%lh+lh)%lh;
+      pos[c]=((pos[c]+delta)%lh+lh)%lh;
     }
     function onEnd(){
       if(!pointerDown||drag.col!==c)return;
