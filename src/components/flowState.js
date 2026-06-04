@@ -36,7 +36,6 @@ export default function flowState() {
   }
 
   function handleTouchMove(e) {
-    e.preventDefault();
     const touch = e.touches[0];
     const valX = touch.clientX;
     const valY = touch.clientY;
@@ -58,7 +57,7 @@ export default function flowState() {
   }
 
   root.addEventListener("touchstart", handleTouchStart, { passive: true });
-  root.addEventListener("touchmove", handleTouchMove, { passive: false });
+  root.addEventListener("touchmove", handleTouchMove, { passive: true });
 
   function handleMouseMove(e) {
     const valX = e.clientX;
