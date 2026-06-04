@@ -24,17 +24,41 @@ export default function flowState() {
 
   root.addEventListener("mousemove", handleMouseMove);
 
-  function handleTap(e) {
-    const touch = e.changedTouches[0];
-    createMedia(
-      touch.clientX,
-      touch.clientY - root.getBoundingClientRect().top,
-      0,
-      0,
-    );
+  let oldTouchX = 0,
+    oldTouchY = 0,
+    touchIncr = 0;
+
+  function handleTouchStart(e) {
+    const touch = e.touches[0];
+    oldTouchX = touch.clientX;
+    oldTouchY = touch.clientY;
+    touchIncr = 0;
   }
 
-  root.addEventListener("touchend", handleTap);
+  function handleTouchMove(e) {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const valX = touch.clientX;
+    const valY = touch.clientY;
+
+    touchIncr += Math.abs(valX - oldTouchX) + Math.abs(valY - oldTouchY);
+
+    if (touchIncr > resetDist) {
+      touchIncr = 0;
+      createMedia(
+        valX,
+        valY - root.getBoundingClientRect().top,
+        valX - oldTouchX,
+        valY - oldTouchY,
+      );
+    }
+
+    oldTouchX = valX;
+    oldTouchY = valY;
+  }
+
+  root.addEventListener("touchstart", handleTouchStart, { passive: true });
+  root.addEventListener("touchmove", handleTouchMove, { passive: false });
 
   function handleMouseMove(e) {
     const valX = e.clientX;
@@ -123,7 +147,8 @@ export default function flowState() {
 
     if (isRootRemoved) {
       root.removeEventListener("mousemove", handleMouseMove);
-      root.removeEventListener("touchend", handleTap);
+      root.removeEventListener("touchstart", handleTouchStart);
+      root.removeEventListener("touchmove", handleTouchMove);
       observer.disconnect();
     }
   });
