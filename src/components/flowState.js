@@ -127,9 +127,9 @@ export default function flowState() {
     );
 
     tl.to(image, {
-      duration: 0.3,
+      duration: 0.8,
       scale: 0.5,
-      delay: 0.1,
+      delay: 0.4,
       ease: "back.in(1.5)",
     });
 
