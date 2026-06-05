@@ -26,7 +26,9 @@ export default function flowState() {
 
   let oldTouchX = 0,
     oldTouchY = 0,
-    touchIncr = 0;
+    touchIncr = 0,
+    touchResetDist = window.innerWidth / 3,
+    lastTouchSpawn = 0;
 
   function handleTouchStart(e) {
     const touch = e.touches[0];
@@ -42,8 +44,10 @@ export default function flowState() {
 
     touchIncr += Math.abs(valX - oldTouchX) + Math.abs(valY - oldTouchY);
 
-    if (touchIncr > resetDist) {
+    const now = Date.now();
+    if (touchIncr > touchResetDist && now - lastTouchSpawn > 500) {
       touchIncr = 0;
+      lastTouchSpawn = now;
       createMedia(
         valX,
         valY - root.getBoundingClientRect().top,
