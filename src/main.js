@@ -2,8 +2,11 @@ import blogReadTime from "./components/blogReadTime.js";
 import custom from "./components/custom.js";
 import flowState from "./components/flowState.js";
 import gallery from "./components/gallery.js";
+import headerMobile from "./components/headerMobile.js";
 import instagramFeed from "./components/instagramFeed.js";
 import TribeCards from "./components/tribeCards.js";
+
+const mm = gsap.matchMedia();
 
 // --------------- INIT ---------------
 function init() {
@@ -13,6 +16,10 @@ function init() {
   instagramFeed();
   blogReadTime();
   TribeCards();
+
+  mm.add("(max-width: 991px)", () => {
+    headerMobile();
+  });
 }
 
 init();
