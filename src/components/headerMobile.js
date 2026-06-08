@@ -1,18 +1,14 @@
 export default function headerMobile() {
   const navBtn = document.querySelector("[data-header-mobile-btn]");
   const header = document.querySelector(".c-header");
-  const headerNav = document.querySelector(".c-header-nav");
-
-  if (navBtn && header && headerNav) {
+  if (navBtn && header) {
     navBtn.addEventListener("click", () => {
       header.classList.toggle("is-open");
 
       if (header.classList.contains("is-open")) {
-        lenis.stop();
-        headerNav.setAttribute("data-lenis-prevent", "");
+        window.lenis.stop();
       } else {
-        lenis.start();
-        headerNav.removeAttribute("data-lenis-prevent");
+        window.lenis.start();
       }
     });
   }
