@@ -46,7 +46,7 @@ export default function marquee() {
     if (duplicated.has(marquee)) return;
 
     const duplicateAttr = marquee.getAttribute("data-marquee-duplicate");
-    const totalCopiesToCreate = duplicateAttr ? parseInt(duplicateAttr, 10) : 1;
+    const totalCopiesToCreate = duplicateAttr ? Math.ceil(parseFloat(duplicateAttr)) : 1;
 
     if (totalCopiesToCreate <= 0) {
       duplicated.add(marquee);
