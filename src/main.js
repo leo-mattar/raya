@@ -6,6 +6,7 @@ import headerMobile from "./components/headerMobile.js";
 import instagramFeed from "./components/instagramFeed.js";
 import marquee from "./components/marquee.js";
 import TribeCards from "./components/tribeCards.js";
+import events from "./components/events.js";
 
 const mm = gsap.matchMedia();
 
@@ -18,6 +19,7 @@ function init() {
   blogReadTime();
   TribeCards();
   marquee();
+  events();
 
   mm.add("(max-width: 991px)", () => {
     headerMobile();
